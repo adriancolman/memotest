@@ -1,0 +1,81 @@
+.cuadro {
+  width: 21vw;
+  height: 21vh;
+  border: solid black 1px;
+  cursor: pointer;
+  color: transparent;
+  font-size: 0px;
+}
+
+.clase1 {
+  background-color: black;
+}
+
+.clase3 {
+  background-color: antiquewhite;
+}
+
+.clase5 {
+  background-color: blue;
+}
+
+.clase7 {
+  background-color: red;
+}
+
+.clase9 {
+  background-color: green;
+}
+
+.clase11 {
+  background-color: yellow;
+}
+
+.clase13 {
+  background-color: blueviolet;
+}
+
+.clase15 {
+  background-color: deeppink;
+}
+
+.reverso {
+  background: rgb(63, 22, 8);
+}
+
+.clickeado {
+  cursor: text;
+}
+
+.bloqueado {
+  display: flex;
+  align-items: center;
+  width: 21vw;
+  height: 20vh;
+  margin: 2px;
+  border: solid black 1px;
+  font-size: 4em;
+  color: indigo;
+  display: flex;
+  justify-content: center;
+  background-color: aqua;
+  transition: ease all 0.5s;
+  transform: rotate(180deg);
+}
+
+#reiniciar {
+  display: none;
+  max-height: 50px;
+}
+
+#start {
+  display: block;
+  max-height: 50px;
+}
+
+.mensaje {
+  align-items: center;
+  color: aliceblue;
+  font-size: 1.5em;
+  font-family: initial;
+}

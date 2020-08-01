@@ -1,0 +1,24 @@
+{
+  "name": "memotest",
+  "version": "1.0.0",
+  "description": "memotest con java script",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adriancolman/memotest.git"
+  },
+  "author": "adrian colman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adriancolman/memotest/issues"
+  },
+  "homepage": "https://github.com/adriancolman/memotest#readme",
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
+  }
+}
