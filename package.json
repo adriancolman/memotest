@@ -4,7 +4,10 @@
   "description": "memotest con java script",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "http": "http-server",
+    "cypress-run": "cypress run",
+    "cypress-dev": "cypress open"
   },
   "repository": {
     "type": "git",

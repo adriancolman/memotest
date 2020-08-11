@@ -1,9 +1,9 @@
 const $cuadros = document.querySelectorAll(".cuadro");
 const $botonComenzar = document.querySelector("#start");
+let arrayCuadros = [];
 let arrayNumRandom = [];
 let numRandom;
 let ronda = 0;
-let contadorClicks = 0;
 let jugada = [];
 const cantidadDeCuadros = $cuadros.length;
 const $botonReinicio = document.querySelector("#reiniciar");
@@ -15,38 +15,34 @@ $botonReinicio.addEventListener("click", reiniciarJuego);
 function generarTablero() {
     $botonComenzar.style.display = "none";
     imprimirMensaje("clickeá sobre los cuadros");
-    while (arrayNumRandom.length < $cuadros.length) {
-        generarArrayRandom(numRandom);
-    }
-    identificarCuadro($cuadros, arrayNumRandom);
+    obtenerArrayCuadros();
+    desordenarArray(arrayCuadros);
+    identificarCuadros($cuadros, arrayNumRandom);
 
     comenzarJuego();
 }
 
-function generarNumRandom(cuadros) {
-    const multiplicador = cuadros.length;
-    numRandom = Math.floor(Math.random() * multiplicador);
-    return numRandom;
-}
-
-function generarArrayRandom() {
-    generarNumRandom($cuadros);
-    if (descartarExistente(numRandom) !== false) {
-        arrayNumRandom.push(numRandom);
-        return arrayNumRandom;
+function obtenerArrayCuadros(){
+    for (let i = 0; i < cantidadDeCuadros; i++) {
+        arrayCuadros.push(i);
     }
+    return arrayCuadros
 }
 
-function descartarExistente(numeroRandom) {
-    for (let i = 0; i < arrayNumRandom.length; i++) {
-        const element = arrayNumRandom[i];
-        if (element == numRandom) {
-            return false;
-        }
+
+function desordenarArray(arrayOrdenado){
+    for (let i = 0; i < cantidadDeCuadros; i++) {
+        indiceRandom = Math.floor(Math.random()*(arrayOrdenado.length));
+        const numRandom = arrayOrdenado[indiceRandom];
+        arrayNumRandom.push(numRandom)
+        arrayOrdenado.splice(indiceRandom, 1);
     }
+    console.log(arrayNumRandom);
+    return arrayNumRandom;
 }
 
-function identificarCuadro(cuadros, arrayRandom) {
+
+function identificarCuadros(cuadros, arrayRandom) {
     for (let i = 0; i < cuadros.length; i++) {
         const element = cuadros[i];
 
@@ -58,10 +54,10 @@ function identificarCuadro(cuadros, arrayRandom) {
         }
 
     }
-    asignarClaseCuadro($cuadros);
+    asignarClaseCuadros($cuadros);
 }
 
-function asignarClaseCuadro(cuadros) {
+function asignarClaseCuadros(cuadros) {
     cuadros.forEach(function (element) {
         const clase = element.textContent;
         element.classList.add(`clase${clase}`, "reverso");
@@ -79,13 +75,12 @@ function tomarJugada(e) {
     e.target.classList.add("clickeado");
     e.target.removeEventListener("click", tomarJugada);
     const identificadorCuadro = e.target.textContent;
-    contadorClicks++;
     jugada.push(identificadorCuadro);
-    if (contadorClicks == 2) {
+    if (jugada.length === 2) {
         ronda++;
         imprimirMensaje(`jugada Numero ${ronda}`)
-        contadorClicks = 0;
-        if (compararJugada(jugada) == "exito") {
+        const resultadoJugada = compararJugada(jugada);
+        if (resultadoJugada == "exito") {
             const clickeado = document.querySelectorAll(".clickeado");
             setTimeout(() => {
                 clickeado.forEach(function (cuadro) {
@@ -98,7 +93,7 @@ function tomarJugada(e) {
             jugada = [];
 
         }
-        else if (compararJugada(jugada) == "distinto") {
+        else if (resultadoJugada == "distinto") {
             setTimeout(function () {
                 const clickeado = document.querySelectorAll(".clickeado");
                 clickeado.forEach(function (cuadro) {
